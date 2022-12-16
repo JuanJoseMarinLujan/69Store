@@ -5,7 +5,7 @@ module.exports = {
     colors: {
       richB: "#0a0a0a",
       sunglow: "#ffc914",
-      silver: "#7a7a7a",
+      silver: "#f3f3f3",
       orange: "#f75c03",
       richW: "#fafafa",
     },

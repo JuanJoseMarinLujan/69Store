@@ -1,48 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import Home from "./routes/Home";
-import Catalogue from "./routes/Catalogue";
-import ProductDetails from "./routes/ProductDetails";
-import Cart from "./routes/Cart";
-import CheckOut from "./routes/CheckOut";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
-import Img1 from "./assets/Caps/Collection Caps MLB/1.jpg";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 import "./App.css";
 
 function App() {
-  const [cant, setCant] = useState(1);
-  const [addCart, setAddCart] = useState([
-    {
-      id: 1,
-      name: "MLB '47 HITCH - 75th Anniversary Collection",
-      price: 999.0,
-      size: "K",
-      categorys: ["caps", "collections"],
-      image: Img1,
-      quantity: 2
-    },
-    {
-      id: 1,
-      name: "MLB '47 HITCH - 75th Anniversary Collection",
-      price: 999.0,
-      size: "K",
-      categorys: ["caps", "collections"],
-      image: Img1,
-      quantity: 5
-    },
-  ]);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/home");
+    }
+  });
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/catalogue" element={<Catalogue />} />
-        <Route exact path="/product/:id" element={<ProductDetails />} />
-        <Route exact path="/cart" element={<Cart addCart={addCart} addCant={cant} />} />
-        <Route exact path="/checkout" element={<CheckOut />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="w-full h-screen flex flex-col justify-between items-center bg-richW">
+      <Header />
+      <main className="w-11/12 h-full mt-16 flex justify-center items-center">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

@@ -5,7 +5,7 @@ function Products({ item }) {
   return (
     <article
       key={item.id}
-      className="flex flex-col justify-around items-center h-96 bg-richW p-2"
+      className="flex flex-col justify-around items-center h-96 bg-silver p-4 rounded-sm"
     >
       <img src={item.image} alt="" className="w-60 h-64" />
       <div className="w-11/12 h-24 flex flex-col justify-center items-center">

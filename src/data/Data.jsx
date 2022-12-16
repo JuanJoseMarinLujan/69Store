@@ -1,6 +1,6 @@
-import Img1 from "../../assets/Caps/Collection Caps MLB/1.jpg";
-import Img2 from "../../assets/Shoes/AF1-07II.png";
-import Img3 from "../../assets/T-Shirts/Collection Qatar2022/1.jpg";
+import Img1 from "../assets/Caps/Collection Caps MLB/1.jpg";
+import Img2 from "../assets/Shoes/AF1-07II.png";
+import Img3 from "../assets/T-Shirts/Collection Qatar2022/1.jpg";
 
 export const Data = [
   {
