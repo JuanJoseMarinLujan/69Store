@@ -8,6 +8,8 @@ module.exports = {
       silver: "#f3f3f3",
       orange: "#f75c03",
       richW: "#fafafa",
+      tart: "#f4261f",
+      gate: "#c03221",
     },
     fontFamily: {
       sans: ["Poppins", "sans-serif"],

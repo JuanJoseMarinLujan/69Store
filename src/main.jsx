@@ -15,12 +15,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<App />}>
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/catalogue/:name" element={<ItemListContainer />} />
-          <Route exact path="/product/:id" element={<ProductDetails />} />
-          <Route exact path="/cart" element={<Cart />} />
-          <Route exact path="/checkout" element={<CheckOut />} />
+        <Route path="/" element={<App />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/catalogue/:name" element={<ItemListContainer />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckOut />} />
         </Route>
       </Routes>
     </BrowserRouter>

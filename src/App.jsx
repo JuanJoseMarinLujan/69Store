@@ -16,9 +16,9 @@ function App() {
     }
   });
   return (
-    <div className="w-full h-screen flex flex-col justify-between items-center bg-richW">
+    <div className="w-screen h-screen flex flex-col justify-between items-center bg-white">
       <Header />
-      <main className="w-11/12 h-full mt-16 flex justify-center items-center">
+      <main className="w-full h-full mt-16 flex justify-center items-center">
         <Outlet />
       </main>
       <Footer />

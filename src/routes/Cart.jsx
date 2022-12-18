@@ -35,6 +35,11 @@ function Cart() {
     getLocalStorage();
   }
 
+  function handleClearCart() {
+    localStorage.removeItem("cart");
+    getLocalStorage();
+  }
+
   function EmptyCart() {
     return (
       <article className="flex justify-center items-center w-11/12 h-full">
@@ -55,17 +60,32 @@ function Cart() {
 
   function FullCart() {
     return (
-      <div>
-        <h2>Cart</h2>
+      <div className="w-1/3 flex flex-col justify-center items-center">
+        <h2 className="text-2xl font-bold p-8">CART</h2>
         {/* <span>Number of items: 100</span> */}
         <article className="w-11/12">
           <div>
-            <div>{cartItems.map((item) => {return <CartItem item={item} onDelete={handleClickDelete} />})}</div>
-            <span>Total: $ {total}</span>
+            {cartItems.map((item) => {
+              return <CartItem key={item.id} item={item} onDelete={handleClickDelete} />;
+            })}
           </div>
-          <div>
-            <button>Check-Out</button>
-            <button>Clean Cart</button>
+          <div className="p-10 flex flex-col justify-center items-center gap-8">
+            <h3 className="text-3xl font-bold">Total: ${total}</h3>
+            <div className="flex items-center justify-around w-96">
+              <button
+                type="button"
+                className="bg-richB font-sans font-bold text-xl text-richW w-40 h-10 flex justify-center items-center rounded-xl hover:bg-orange shadow shadow-richB"
+              >
+                <Link to="/checkout">Check-Out</Link>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleClearCart()}
+                className="bg-richB font-sans font-bold text-xl text-richW w-40 h-10 flex justify-center items-center rounded-xl hover:bg-tart shadow shadow-richB"
+              >
+                Clean Cart
+              </button>
+            </div>
           </div>
         </article>
       </div>
@@ -73,12 +93,7 @@ function Cart() {
   }
 
   return (
-    <section className="w-full h-full flex flex-col justify-start items-center bg-richW p-5">
-      {/* <article className="w-11/12 h-10 flex justify-end">
-        <Link to="/catalogue">
-          <i className="uil uil-times text-4xl"></i>
-        </Link>
-      </article> */}
+    <section className="w-full h-full flex flex-col justify-start items-center p-5 border">
       {cant == 0 ? <EmptyCart /> : <FullCart />}
     </section>
   );

@@ -35,6 +35,22 @@ export const Data = [
     categorys: ["shoes"],
     image: Img2,
   },
+  {
+    id: 5,
+    name: "Air Force One - 07",
+    price: 499.0,
+    sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
+    categorys: ["shoes"],
+    image: Img2,
+  },
+  {
+    id: 6,
+    name: "Air Force One - 07",
+    price: 499.0,
+    sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
+    categorys: ["shoes"],
+    image: Img2,
+  },
 ];
 
 export const Categorys = [
