@@ -11,14 +11,14 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === "/") {
-      navigate("/home");
+    if (location.pathname === "/69Store/") {
+      navigate("/69Store/home");
     }
   });
   return (
     <div className="w-screen h-screen flex flex-col justify-between items-center bg-white">
       <Header />
-      <main className="w-full h-full mt-16 flex justify-center items-center">
+      <main className="w-full mt-16 flex justify-center items-center">
         <Outlet />
       </main>
       <Footer />

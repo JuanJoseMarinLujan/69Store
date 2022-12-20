@@ -13,7 +13,7 @@ function Products({ item }) {
         <h4 className="font-bold h-1/3">$ {item.price}</h4>
         <div className="p-2">
           <Link
-            to={`/product/${item.id}`}
+            to={`/69Store/product/${item.id}`}
             className="bg-richB text-richW w-20 flex justify-start pl-3 items-center rounded-xl hover:bg-orange hover:shadow hover:shadow-richB"
           >
             See<i className="uil uil-arrow-right pl-1"></i>

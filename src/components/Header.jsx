@@ -14,7 +14,7 @@ function Header() {
             {Categorys.map((item, index) => {
               return (
                 <li key={index} className="text-richB w-auto h-8 flex justify-center items-center hover:bg-sunglow hover:text-richB rounded-lg hover:shadow hover:shadow-richB">
-                  <Link to={`/catalogue/${item.name}`}
+                  <Link to={`/69Store/catalogue/${item.name}`}
                     className="px-4"
                   >
                     {item.name}
@@ -26,7 +26,7 @@ function Header() {
         </nav>
 
         <div className="w-1/3 flex justify-center items-center">
-          <Link to="/">
+          <Link to="/69Store/">
             <img src={Logo} alt="" width={50} />
           </Link>
         </div>

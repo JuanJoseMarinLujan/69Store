@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import CartItem from "../components/cart/CartItem";
 
 function Cart() {
+  const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [cant, setCant] = useState(0);
@@ -27,6 +28,9 @@ function Cart() {
 
   useEffect(() => {
     getLocalStorage();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   function handleClickDelete(id) {
@@ -42,12 +46,12 @@ function Cart() {
 
   function EmptyCart() {
     return (
-      <article className="flex justify-center items-center w-11/12 h-full">
-        <div className="flex flex-col justify-center items-center gap-5">
-          <h3 className="text-4xl">Oops! Empty cart</h3>
-          <button className="bg-richB w-auto p-2 h-auto flex justify-center items-center rounded-xl hover:bg-orange">
+      <article className="flex justify-center items-center w-11/12 h-96 mt-44">
+        <div className="flex flex-col justify-center items-center gap-10">
+          <h3 className="text-6xl">Oops! Empty cart</h3>
+          <button className="bg-richB w-auto p-3 h-auto flex justify-center items-center rounded-xl hover:bg-orange shadow shadow-richB">
             <Link
-              to="/catalogue/All"
+              to="/69Store/catalogue/All"
               className="font-sans font-bold text-lg text-richW "
             >
               ¡Continue watching!
@@ -60,7 +64,7 @@ function Cart() {
 
   function FullCart() {
     return (
-      <div className="w-1/3 flex flex-col justify-center items-center">
+      <div className="w-1/3 flex flex-col justify-center items-center ">
         <h2 className="text-2xl font-bold p-8">CART</h2>
         {/* <span>Number of items: 100</span> */}
         <article className="w-11/12">
@@ -76,7 +80,7 @@ function Cart() {
                 type="button"
                 className="bg-richB font-sans font-bold text-xl text-richW w-40 h-10 flex justify-center items-center rounded-xl hover:bg-orange shadow shadow-richB"
               >
-                <Link to="/checkout">Check-Out</Link>
+                <Link to="/69Store/checkout">Check-Out</Link>
               </button>
               <button
                 type="button"
@@ -93,8 +97,8 @@ function Cart() {
   }
 
   return (
-    <section className="w-full h-full flex flex-col justify-start items-center p-5 border">
-      {cant == 0 ? <EmptyCart /> : <FullCart />}
+    <section className="w-full h-full flex flex-col justify-start items-center p-5">
+      {loading == true ? <h2>Loading...</h2> : cant == 0 ? <EmptyCart /> : <FullCart />}
     </section>
   );
 }

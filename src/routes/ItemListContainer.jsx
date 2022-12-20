@@ -7,14 +7,24 @@ import { Data } from "../data/Data";
 
 function ItemListContainer() {
   const { name } = useParams();
+  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     if (name.toLowerCase() === "all") {
       setItems(Data);
+      setTimeout(() =>{
+        setLoading(false);
+      }, 1000);
+      
     } else {
-      const itemsData = Data.filter((item) => item.categorys.includes(name.toLowerCase()));
+      const itemsData = Data.filter((item) =>
+        item.categorys.includes(name.toLowerCase())
+      );
       setItems(itemsData);
+      setTimeout(() =>{
+        setLoading(false);
+      }, 1000);
     }
   }, [name]);
 
@@ -24,11 +34,15 @@ function ItemListContainer() {
         <h2 className="text-2xl font-bold">CATALOGUE</h2>
         <span className="text-sm pt-1 pb-5">{name.toUpperCase()}</span>
       </div>
-      <div className="grid grid-cols-5 gap-2 pb-10">
-        {items.map((item) => {
-          return <Products key={item.id} item={item} />;
-        })}
-      </div>
+      {loading == true ? (
+        <h2>Loading...</h2>
+      ) : (
+        <div className="grid grid-cols-5 gap-2 pb-10">
+          {items.map((item) => {
+            return <Products key={item.id} item={item} />;
+          })}
+        </div>
+      )}
     </section>
   );
 }

@@ -5,7 +5,7 @@ import Img3 from "../assets/T-Shirts/Collection Qatar2022/1.jpg";
 export const Data = [
   {
     id: 1,
-    name: "MLB '47 HITCH - 75th Anniv. Collection",
+    name: "MLB '47 HITCH",
     price: 999.0,
     sizes: ["T", "K", "Y", "W", "O"],
     categorys: ["caps", "collections"],
@@ -21,7 +21,7 @@ export const Data = [
   },
   {
     id: 3,
-    name: "2022 Qatar - Collection",
+    name: "2022 Qatar",
     price: "1999.0",
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     categorys: ["tshirts", "collections"],
