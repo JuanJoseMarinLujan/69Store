@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 const Counter = ({ stock, initial = 1, onAdd }) => {
   const [count, setCount] = useState(initial);
+
+  useEffect(() => {
+    setCount(initial);
+  }, [initial]);
 
   function increment() {
     if (count < stock) {

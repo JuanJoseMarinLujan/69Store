@@ -5,7 +5,7 @@ import { useContextGlobal } from "../context/GlobalContext";
 import Counter from "./Counter";
 
 const ItemDetails = ({ Item }) => {
-  const { addToCart } = useContextGlobal();
+  const { addToCart, getQuantity } = useContextGlobal();
 
   function onAdd(quantity) {
       addToCart({
@@ -13,6 +13,8 @@ const ItemDetails = ({ Item }) => {
         quantity: quantity,
       });
   }
+
+  const quantity = getQuantity(Item.id);
 
   return (
     <>
@@ -29,7 +31,7 @@ const ItemDetails = ({ Item }) => {
             $ {Item.price}
           </h4>
 
-          <Counter onAdd={onAdd} stock={Item.stock}/>
+          <Counter onAdd={onAdd} stock={Item.stock} initial={quantity}/>
 
           <div className="flex gap-5 mt-5">
             <button className="bg-sunglow text-richW w-32 h-1/2 flex justify-center p-4 items-center rounded-xl hover:bg-richB shadow hover:shadow-richB">

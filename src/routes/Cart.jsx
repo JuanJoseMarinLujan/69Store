@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SpinnerLoad from "../components/SpinnerLoad";
 
 import { useContextGlobal } from "../context/GlobalContext";
 
 import CartItem from "../components/cart/CartItem";
 
 function Cart() {
-  const { cart, clearCart } = useContextGlobal();
+  const { cart, clearCart, getTotalPrice } = useContextGlobal();
   const [loading, setLoading] = useState(true);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  function getTotalPrice() {
-
-  }
+  console.log(getTotalPrice());
 
   useEffect(() => {
-    getTotalPrice();
-    setTimeout(() =>{
+    setTimeout(() => {
       setLoading(false);
     }, 1000);
-  }, [])
+  }, []);
 
   function EmptyCart() {
     return (
@@ -47,17 +43,11 @@ function Cart() {
         <article className="w-11/12">
           <div>
             {cart.map((item) => {
-              return (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  /* onDelete={handleClickDelete} */
-                />
-              );
+              return <CartItem key={item.id} item={item} />;
             })}
           </div>
           <div className="p-10 flex flex-col justify-center items-center gap-8">
-            <h3 className="text-3xl font-bold">Total: ${totalPrice}</h3>
+            <h3 className="text-3xl font-bold">Total: ${getTotalPrice()}</h3>
             <div className="flex items-center justify-around w-96">
               <button
                 type="button"
@@ -82,7 +72,7 @@ function Cart() {
   return (
     <section className="w-full h-full flex flex-col justify-start items-center p-5">
       {loading == true ? (
-        <h2>Loading...</h2>
+        <SpinnerLoad loading={loading}/>
       ) : cart.length == 0 ? (
         <EmptyCart />
       ) : (

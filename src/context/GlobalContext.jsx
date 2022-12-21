@@ -11,10 +11,10 @@ const GlobalContextProvider = ({ children }) => {
   function addToCart(element) {
     if (cart.some((e) => e.id === element.id)) {
       let newArray = cart.map((item) => {
-        if (item.id === element.id && item.quantity + element.quantity < item.stock) {
+        if (item.id === element.id) {
           let newProduct = {
             ...item,
-            quantity: item.quantity + element.quantity,
+            quantity: element.quantity,
           };
           return newProduct;
         } else {
@@ -27,6 +27,18 @@ const GlobalContextProvider = ({ children }) => {
     }
   }
 
+  function getQuantity(id) {
+    const item = cart.find((e) => e.id === id);
+    return item?.quantity;
+  }
+
+  function getQuantityTotal() {
+    const item = cart.reduce((acum, item) => {
+      return acum + item.quantity;
+    }, 0);
+    return item;
+  }
+
   function deleteItemCart(id) {
     let newCart = cart.filter((e) => e.id !== id);
     setCart(newCart);
@@ -36,12 +48,22 @@ const GlobalContextProvider = ({ children }) => {
     setCart([]);
   }
 
+  function getTotalPrice() {
+    const total = cart.reduce((acum, element) => {
+      return acum + element.price * element.quantity;
+    }, 0);
+    return total;
+  }
+
   const Data = {
     cart,
     setCart,
     addToCart,
     deleteItemCart,
     clearCart,
+    getQuantity,
+    getTotalPrice,
+    getQuantityTotal,
   };
 
   return (
