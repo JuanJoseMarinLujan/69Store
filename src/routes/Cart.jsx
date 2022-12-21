@@ -1,48 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { useContextGlobal } from "../context/GlobalContext";
+
 import CartItem from "../components/cart/CartItem";
 
 function Cart() {
+  const { cart, clearCart } = useContextGlobal();
   const [loading, setLoading] = useState(true);
-  const [cartItems, setCartItems] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [cant, setCant] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  function getLocalStorage() {
-    const localStrg = JSON.parse(localStorage.getItem("cart"));
-    if (localStrg) {
-      setCartItems(localStrg);
-      setCant(localStrg.length);
-      setDataTotal();
-    } else {
-      setCant(0);
-    }
-  }
+  function getTotalPrice() {
 
-  function setDataTotal() {
-    cartItems.map((item) => {
-      setTotal(total + item.quantity * item.price);
-    });
   }
 
   useEffect(() => {
-    getLocalStorage();
-    setTimeout(() => {
+    getTotalPrice();
+    setTimeout(() =>{
       setLoading(false);
     }, 1000);
-  }, []);
-
-  function handleClickDelete(id) {
-    let newCart = cartItems.filter((e) => e.id !== id);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    getLocalStorage();
-  }
-
-  function handleClearCart() {
-    localStorage.removeItem("cart");
-    getLocalStorage();
-  }
+  }, [])
 
   function EmptyCart() {
     return (
@@ -69,12 +46,18 @@ function Cart() {
         {/* <span>Number of items: 100</span> */}
         <article className="w-11/12">
           <div>
-            {cartItems.map((item) => {
-              return <CartItem key={item.id} item={item} onDelete={handleClickDelete} />;
+            {cart.map((item) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  /* onDelete={handleClickDelete} */
+                />
+              );
             })}
           </div>
           <div className="p-10 flex flex-col justify-center items-center gap-8">
-            <h3 className="text-3xl font-bold">Total: ${total}</h3>
+            <h3 className="text-3xl font-bold">Total: ${totalPrice}</h3>
             <div className="flex items-center justify-around w-96">
               <button
                 type="button"
@@ -84,7 +67,7 @@ function Cart() {
               </button>
               <button
                 type="button"
-                onClick={() => handleClearCart()}
+                onClick={() => clearCart()}
                 className="bg-richB font-sans font-bold text-xl text-richW w-40 h-10 flex justify-center items-center rounded-xl hover:bg-tart shadow shadow-richB"
               >
                 Clean Cart
@@ -98,7 +81,13 @@ function Cart() {
 
   return (
     <section className="w-full h-full flex flex-col justify-start items-center p-5">
-      {loading == true ? <h2>Loading...</h2> : cant == 0 ? <EmptyCart /> : <FullCart />}
+      {loading == true ? (
+        <h2>Loading...</h2>
+      ) : cart.length == 0 ? (
+        <EmptyCart />
+      ) : (
+        <FullCart />
+      )}
     </section>
   );
 }

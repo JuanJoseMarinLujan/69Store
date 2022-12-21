@@ -10,6 +10,8 @@ export const Data = [
     sizes: ["T", "K", "Y", "W", "O"],
     categorys: ["caps", "collections"],
     image: Img1,
+    stock: 10,
+    quantity: 0,
   },
   {
     id: 2,
@@ -18,6 +20,8 @@ export const Data = [
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
     categorys: ["shoes"],
     image: Img2,
+    stock: 9,
+    quantity: 0,
   },
   {
     id: 3,
@@ -26,6 +30,8 @@ export const Data = [
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     categorys: ["tshirts", "collections"],
     image: Img3,
+    stock: 8,
+    quantity: 0,
   },
   {
     id: 4,
@@ -34,6 +40,8 @@ export const Data = [
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
     categorys: ["shoes"],
     image: Img2,
+    stock: 7,
+    quantity: 0,
   },
   {
     id: 5,
@@ -42,6 +50,8 @@ export const Data = [
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
     categorys: ["shoes"],
     image: Img2,
+    stock: 6,
+    quantity: 0,
   },
   {
     id: 6,
@@ -50,6 +60,8 @@ export const Data = [
     sizes: [7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12],
     categorys: ["shoes"],
     image: Img2,
+    stock: 5,
+    quantity: 0,
   },
 ];
 

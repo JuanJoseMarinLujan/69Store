@@ -1,6 +1,8 @@
 import React from "react";
+import { useContextGlobal } from "../../context/GlobalContext";
 
-const CartItem = ({ item, onDelete }) => {
+const CartItem = ({ item }) => {
+  const { deleteItemCart } = useContextGlobal();
   return (
     <div key={item.id} className="flex justify-center items-center gap-10 p-5">
       <img src={item.image} alt="" className="w-40 h-44 rounded-lg" />
@@ -14,7 +16,7 @@ const CartItem = ({ item, onDelete }) => {
         </div>
       </div>
       <button
-        onClick={() => onDelete(item.id)}
+        onClick={() => deleteItemCart(item.id)}
         className="bg-tart h-10 w-10 rounded-lg text-3xl text-richW hover:bg-gate"
       >
         <i className="uil uil-trash-alt"></i>
