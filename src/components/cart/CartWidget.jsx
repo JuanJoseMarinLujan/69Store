@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useContextGlobal } from "../../context/GlobalContext";
+import { useCartContextGlobal } from "../../context/CartContext";
 
 function CartWidget() {
-  const { getQuantityTotal } = useContextGlobal();
+  const { getQuantityTotal } = useCartContextGlobal();
   console.log(getQuantityTotal());
   return (
     <div className="w-1/3 flex justify-end items-center gap-1">

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useContextGlobal } from "../context/GlobalContext";
+import { useCartContextGlobal } from "../context/CartContext";
 
 import Counter from "./Counter";
 
 const ItemDetails = ({ Item }) => {
-  const { addToCart, getQuantity } = useContextGlobal();
+  const { addToCart, getQuantity } = useCartContextGlobal();
 
   function onAdd(quantity) {
       addToCart({
@@ -30,6 +30,12 @@ const ItemDetails = ({ Item }) => {
           <h4 className="font-bold text-2xl h-1/3">
             $ {Item.price}
           </h4>
+
+          {/* <div className="flex gap-2">
+            {Item.sizes.map((sz) => {
+              return (<button key={sz.index} className="bg-richB rounded-xl text-richW px-3 py-1 hover:bg-sunglow">{sz}</button>)
+            })}
+          </div> */}
 
           <Counter onAdd={onAdd} stock={Item.stock} initial={quantity}/>
 

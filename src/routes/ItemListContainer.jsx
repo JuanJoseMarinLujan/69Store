@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 import Products from "../components/Products";
 import SpinnerLoad from "../components/SpinnerLoad";
 
-import { Data } from "../data/Data";
+/* import { Data } from "../data/Data"; */
+
+import { database } from "../firebase/firebaseConfig";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 function ItemListContainer() {
   const { name } = useParams();
@@ -12,20 +15,63 @@ function ItemListContainer() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (name.toLowerCase() === "all") {
-      setItems(Data);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+    const ProductsCollection = collection(database, "Products");
+
+    getDocs(ProductsCollection)
+      .then((res) => {
+        const products = res.docs.map((item) => {
+          return {
+            id: item.id,
+            ...item.data(),
+          };
+        });
+        if (name.toLowerCase() === "all") {
+          setItems(products);
+        } else {
+          const itemsData = products.filter((item) =>
+            item.category.includes(name.toLowerCase())
+          );
+          setItems(itemsData);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    /* if (name.toLowerCase() === "all") {
+      getDocs(ProductsCollection)
+        .then((res) => {
+          const products = res.docs.map((item) => {
+            return {
+              ...item.data(),
+              id: item.id,
+            };
+          });
+          setItems(products);
+          console.log(products);
+        })
+        .catch((err) => console.log(err));
     } else {
-      const itemsData = Data.filter((item) =>
-        item.categorys.includes(name.toLowerCase())
+      const queryCategory = query(
+        ProductsCollection,
+        where("categorys", "==", name.toLowerCase())
       );
-      setItems(itemsData);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }
+      console.log(name.toLowerCase());
+      getDocs(queryCategory)
+        .then((res) => {
+          const products = res.docs.map((item) => {
+            return {
+              ...item.data(),
+              id: item.id,
+            };
+          });
+          setItems(products);
+          console.log(products);
+        })
+        .catch((err) => console.log(err));
+    } */
+    
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [name]);
 
   return (
@@ -35,7 +81,7 @@ function ItemListContainer() {
         <span className="text-sm pt-1 pb-5">{name.toUpperCase()}</span>
       </div>
       {loading == true ? (
-        <SpinnerLoad loading={loading}/>
+        <SpinnerLoad loading={loading} />
       ) : (
         <div className="grid grid-cols-5 gap-2 pb-10">
           {items.map((item) => {

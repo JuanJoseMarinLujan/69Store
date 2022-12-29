@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import GlobalContextProvider from "./context/GlobalContext";
+import CartContextProvider from "./context/CartContext";
 
 import App from "./App";
 import Home from "./routes/Home";
@@ -16,7 +16,7 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalContextProvider>
+      <CartContextProvider>
         <Routes>
           <Route path="/69Store/" element={<App />}>
             <Route path="/69Store/home" element={<Home />} />
@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/69Store/checkout" element={<CheckOut />} />
           </Route>
         </Routes>
-      </GlobalContextProvider>
+      </CartContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SpinnerLoad from "../components/SpinnerLoad";
 
-import { useContextGlobal } from "../context/GlobalContext";
+import { useCartContextGlobal } from "../context/CartContext";
 
 import CartItem from "../components/cart/CartItem";
 
 function Cart() {
-  const { cart, clearCart, getTotalPrice } = useContextGlobal();
+  const { cart, clearCart, getTotalPrice } = useCartContextGlobal();
   const [loading, setLoading] = useState(true);
   console.log(getTotalPrice());
 
@@ -36,10 +36,26 @@ function Cart() {
   }
 
   function FullCart() {
+    function handleDelete() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          clearCart();
+        }
+      });
+    }
+
     return (
       <div className="w-1/3 flex flex-col justify-center items-center ">
         <h2 className="text-2xl font-bold p-8">CART</h2>
-        {/* <span>Number of items: 100</span> */}
         <article className="w-11/12">
           <div>
             {cart.map((item) => {
@@ -57,7 +73,7 @@ function Cart() {
               </button>
               <button
                 type="button"
-                onClick={() => clearCart()}
+                onClick={() => handleDelete()}
                 className="bg-richB font-sans font-bold text-xl text-richW w-40 h-10 flex justify-center items-center rounded-xl hover:bg-tart shadow shadow-richB"
               >
                 Clean Cart

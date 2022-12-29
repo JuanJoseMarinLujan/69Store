@@ -1,11 +1,12 @@
 import React, { createContext, useState, useContext } from "react";
+import Swal from "sweetalert2";
 
-export const GlobalContext = createContext();
-export const useContextGlobal = () => {
-  return useContext(GlobalContext);
+export const CartContext = createContext();
+export const useCartContextGlobal = () => {
+  return useContext(CartContext);
 };
 
-const GlobalContextProvider = ({ children }) => {
+const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   function addToCart(element) {
@@ -67,8 +68,8 @@ const GlobalContextProvider = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider value={Data}>{children}</GlobalContext.Provider>
+    <CartContext.Provider value={Data}>{children}</CartContext.Provider>
   );
 };
 
-export default GlobalContextProvider;
+export default CartContextProvider;
