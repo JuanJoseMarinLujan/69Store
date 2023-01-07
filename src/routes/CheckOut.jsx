@@ -53,10 +53,9 @@ function CheckOut() {
         Swal.fire("Bought!", "Your order is on its way.", "success");
         addDoc(orderCollection, purchases).then(({ id }) => {
           setOrderId(id);
-          purchases.items.map((item) => {
-            const orderDoc = doc(db, "Products", item.id);
-            updateDoc(orderDoc, { stock: item.stock - item.quantity });
-          });
+        });
+        purchases.items.map((item) => {
+          updateDoc(doc(db, "Products", item.id), { stock: item.stock - item.quantity });
         });
         setCart([]);
         navigate("/69Store/home");
