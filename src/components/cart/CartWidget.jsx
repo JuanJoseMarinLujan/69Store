@@ -4,7 +4,6 @@ import { useCartContextGlobal } from "../../context/CartContext";
 
 function CartWidget() {
   const { getQuantityTotal } = useCartContextGlobal();
-  console.log(getQuantityTotal());
   return (
     <div className="w-1/3 flex justify-end items-center gap-1">
       {getQuantityTotal() > 0 ? (

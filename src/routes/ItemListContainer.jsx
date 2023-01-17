@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import Products from "../components/Products";
 import SpinnerLoad from "../components/SpinnerLoad";
 
-/* import { Data } from "../data/Data"; */
-
 import { database } from "../firebase/firebaseConfig";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
